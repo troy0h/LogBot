@@ -28,8 +28,8 @@ async def on_message(message):
 @client.event
 async def on_message(message):
     try:
-        print(message.attachments[0]['url'])
-        await message.channel.send(message.attachments[0]['url'])
+        print(message.attachments[0].url)
+        await message.channel.send(message.attachments[0].url)
     except IndexError:
         pass
 
