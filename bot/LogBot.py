@@ -14,6 +14,8 @@ logger.addHandler(handler)
 client = discord.Client()
 token = yaml.safe_load(open('token.yml'))
 
+token = yaml.safe_load(open(r'C:\Users\joshu\Documents\GitHub\LogBot\bot\token.yml'))
+played_games=[]
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
@@ -34,10 +36,24 @@ async def on_message(message):
                 if(output[61:74]=="yuzu Version:"):
                     end_index=str(output).find("| HEAD")
                     yuzu_version = output[74:end_index]
-                if(output[61:70]=="Host CPU:"):
+                elif(output[61:70]=="Host CPU:"):
                     cpu = output[70:]
-                if(output[61:69]=="Host OS:"):
-                    os = output[69:])
+                elif(output[61:69]=="Host OS:"):
+                    os = output[69:]
+                elif(output[94:101]=="Vulkan:"):
+                    renderer="Vulkan"
+                    print(renderer)
+                elif(output[106:117]=="GL_VERSION:"):
+                    renderer="OpenGl"
+                    print(renderer)
+                elif(output[106:117]=="GL_VERSION:"):
+                    renderer="OpenGl"
+                    print(renderer)
+                elif(output[59:72]=="Booting game:"):
+                    played_games.append(str(output[91:]).replace("\r\n",""))
+                    
+            
+                
         else:
             return
     except IndexError:
