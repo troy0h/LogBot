@@ -14,7 +14,7 @@ logger.addHandler(handler)
 client = discord.Client()
 token = yaml.safe_load(open('token.yml'))
 
-token = yaml.safe_load(open(r'C:\Users\joshu\Documents\GitHub\LogBot\bot\token.yml'))
+
 played_games=[]
 @client.event
 async def on_ready():
