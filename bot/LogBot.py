@@ -2,6 +2,7 @@ import discord
 import logging
 import yaml
 import aiohttp
+import asyncio
 
 #logging
 logger = logging.getLogger('discord')
@@ -16,20 +17,19 @@ token = yaml.safe_load(open('token.yml'))
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
-    
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
 
 @client.event
 async def on_message(message):
     try:
-        print(message.attachments[0].url)
-        await message.channel.send(message.attachments[0].url)
+        n = len(message.attachments[0].filename)
+        filenametest = message.attachments[0].filename[n-3:n]
+        print(filenametest)
+        if filenametest == "txt":
+            url = message.attachments[0].url
+            # download file here
+            
+        else:
+            return
     except IndexError:
         pass
 
