@@ -23,16 +23,21 @@ async def on_message(message):
     try:
         n = len(message.attachments[0].filename)
         filenametest = message.attachments[0].filename[n-3:n]
-        print(filenametest)
+        
         if filenametest == "txt":
             url = message.attachments[0].url
             req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             lines = urlopen(req)
             for line in lines:
                 output=line.decode('utf-8')
-                if(output)
                 
-            
+                if(output[61:74]=="yuzu Version:"):
+                    end_index=str(output).find("| HEAD")
+                    yuzu_version = output[61:end_index]
+                if(output[61:70]=="Host CPU:"):
+                    cpu = output[61:]
+                if(output[61:69]=="Host OS:"):
+                    os = output[61:])
         else:
             return
     except IndexError:
