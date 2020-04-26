@@ -3,7 +3,7 @@ import logging
 import yaml
 import aiohttp
 import asyncio
-
+from urllib.request import Request, urlopen
 #logging
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -12,7 +12,7 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 client = discord.Client()
-token = yaml.safe_load(open('token.yml'))
+token = yaml.safe_load(open(r'C:\Users\joshu\Documents\GitHub\LogBot\bot\token.yml'))
 
 @client.event
 async def on_ready():
@@ -26,7 +26,11 @@ async def on_message(message):
         print(filenametest)
         if filenametest == "txt":
             url = message.attachments[0].url
-            # download file here
+            req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            lines = urlopen(req)
+            for line in lines:
+                output=line.decode('utf-8')
+                
             
         else:
             return
