@@ -1,10 +1,19 @@
-import discord
+import os
+try:
+    import discord
+except:
+    os.system(pip install discord.py)
+    import discord
 import logging
-import yaml
+try:
+    import yaml
+except:
+    os.system("pip install PyYAML")
+    import yaml
 import aiohttp
 import asyncio
 from urllib.request import Request, urlopen
-import os
+
 
 #logging
 #logger = logging.getLogger('discord')
