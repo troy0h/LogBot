@@ -51,7 +51,8 @@ async def on_message(message):
                 if(output[61:74]=="yuzu Version:"):
                     end_index=str(output).find("| HEAD")
                     yuzu_version = output[74:end_index]
-                
+                if output[9:]=="Debug <Critical> yuzu\main.cpp:OnGameListOpenFolder:1154: Assertion Failed! Game uses both user and device savedata?":
+                    errors.append(strings_errors["assertion"])
                 elif(output[61:70]=="Host CPU:"):
                     cpu = output[70:]
                    
