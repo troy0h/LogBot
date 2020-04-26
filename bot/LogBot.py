@@ -4,6 +4,7 @@ import yaml
 import aiohttp
 import asyncio
 from urllib.request import Request, urlopen
+import os
 
 #logging
 logger = logging.getLogger('discord')
@@ -13,12 +14,12 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 client = discord.Client()
-token = yaml.safe_load(open('token.yml'))
+token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\token.yml'))
 
-
+strings_errors=yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\error_messages.yml'))
 
 played_games=[]
-
+errors=[]
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
@@ -33,20 +34,25 @@ async def on_message(message):
         filenametest = message.attachments[0].filename[n-3:n]
         print(filenametest)
         if filenametest == "txt":
+            errors.clear()
             played_games.clear()
             url = message.attachments[0].url
             req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             lines = urlopen(req)
+            aSync=None
+            boxcat=None
+            docked=None
             for line in lines:
+                line=line.replace(b'\r\n',b'')
                 output=line.decode('utf-8')
                 
                 if(output[61:74]=="yuzu Version:"):
                     end_index=str(output).find("| HEAD")
                     yuzu_version = output[74:end_index]
-                    print(yuzu_version)
+                
                 elif(output[61:70]=="Host CPU:"):
                     cpu = output[70:]
-                    print(cpu)
+                   
                 elif(output[61:69]=="Host OS:"):
                     os = output[69:]
                 elif(output[94:101]=="Device:"):
@@ -54,16 +60,43 @@ async def on_message(message):
                     gpu=output[102:]
                   
                 elif(output[106:118]=="GL_RENDERER:"):
-                    renderer="OpenGl"
+                    renderer="OpenGL"
                     gpu=output[119:]
-                   
-
+               
+                elif(output[61:99]=="Renderer_UseAsynchronousGpuEmulation: "):
+      
+              
+                    if(output[99:]=="false"):
+                        aSync=False
+                    else:
+                        aSync=True
+                elif(output[61:83]=="System_UseDockedMode: "):
+                    
+                    if(output[83:]=="false"):
+                        docked=False
+                    else:
+                        docked=True
+                elif(output[61:83]=="Services_BCATBackend: "):
+                    
+                    if(output[83:]=="none"):
+                        boxcat=False
+                    else:
+                        boxcat=True
                 elif(output[59:72]=="Booting game:"):
                     played_games.append(str(output[91:]).replace("\r\n",""))
+            #rules
+            if (gpu[:6]=="Radeon"):
+                if (renderer=="OpenGL"):
+                    errors.append(strings_errors["opengl+amd"])
+            if(aSync==False):
+                errors.append(strings_errors["async"])
+            if(boxcat==True):
+                errors.append(strings_errors["boxcat"])
             isEA=False
+
             embed = discord.Embed(
-            title=yuzu_version,
-            description="Desc",
+            title=str(yuzu_version).replace("yuzu","Yuzu"),
+            description="",
             color=0x00ff00)
             for i in str(yuzu_version).split():
                 if i=="Early":
@@ -74,10 +107,16 @@ async def on_message(message):
             embed.set_thumbnail(url=RealImageLocation)
             embed.add_field(name="CPU", value=cpu, inline=False)
             embed.add_field(name="GPU", value=gpu, inline=False)
-            embed.add_field(name="OS", value=os, inline=False)
-            embed.add_field(name="Graphics API", value=renderer, inline=False)
+            embed.add_field(name="OS", value=os, inline=True)
+            embed.add_field(name="Graphics API", value=renderer, inline=True)
+            embed.add_field(name="Docked", value=docked, inline=True)
             if(len(played_games)>0):
                 embed.add_field(name="Last Played Game", value=played_games[len(played_games)-1], inline=False)
+            for i in range(0,len(errors)):
+                if i==0:
+                    embed.add_field(name="Error: ", value=errors[i], inline=False)
+                else:
+                    embed.add_field(name="Error: ", value=errors[i], inline=True)
             await message.channel.send(embed=embed)
                     
 
