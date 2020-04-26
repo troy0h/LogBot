@@ -2,7 +2,7 @@ import os
 try:
     import discord
 except:
-    os.system(pip install discord.py)
+    os.system("pip install discord.py")
     import discord
 import logging
 try:
