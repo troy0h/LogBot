@@ -1,0 +1,60 @@
+[   0.553301] Input <Info> input_common\udp\client.cpp:StartCommunication:206: Starting communication with UDP input server on 127.0.0.1:26760
+[   0.580316] Frontend <Info> yuzu\main.cpp:GMainWindow:216: yuzu Version: yuzu Early Access 450 | HEAD-7f1b3eeaf
+[   0.580324] Frontend <Info> yuzu\main.cpp:GMainWindow:218: Host CPU: AMD Ryzen 5 2600 Six-Core Processor            
+[   0.580354] Frontend <Info> yuzu\main.cpp:GMainWindow:220: Host OS: Windows 10 (10.0)
+[   0.667393] Config <Info> core\settings.cpp:LogSettings:84: yuzu Configuration:
+[   0.667399] Config <Info> core\settings.cpp:LogSetting:80: System_UseDockedMode: false
+[   0.667403] Config <Info> core\settings.cpp:LogSetting:80: System_RngSeed: 0
+[   0.667404] Config <Info> core\settings.cpp:LogSetting:80: System_CurrentUser: 0
+[   0.667405] Config <Info> core\settings.cpp:LogSetting:80: System_LanguageIndex: 1
+[   0.667406] Config <Info> core\settings.cpp:LogSetting:80: System_RegionIndex: 1
+[   0.667407] Config <Info> core\settings.cpp:LogSetting:80: Core_UseMultiCore: false
+[   0.667429] Config <Info> core\settings.cpp:LogSetting:80: Renderer_UseResolutionFactor: 1.0
+[   0.667432] Config <Info> core\settings.cpp:LogSetting:80: Renderer_UseFrameLimit: true
+[   0.667433] Config <Info> core\settings.cpp:LogSetting:80: Renderer_FrameLimit: 100
+[   0.667434] Config <Info> core\settings.cpp:LogSetting:80: Renderer_UseDiskShaderCache: true
+[   0.667435] Config <Info> core\settings.cpp:LogSetting:80: Renderer_GPUAccuracyLevel: 0
+[   0.667436] Config <Info> core\settings.cpp:LogSetting:80: Renderer_UseAsynchronousGpuEmulation: true
+[   0.667437] Config <Info> core\settings.cpp:LogSetting:80: Renderer_UseVsync: false
+[   0.667438] Config <Info> core\settings.cpp:LogSetting:80: Audio_OutputEngine: auto
+[   0.667440] Config <Info> core\settings.cpp:LogSetting:80: Audio_EnableAudioStretching: true
+[   0.667440] Config <Info> core\settings.cpp:LogSetting:80: Audio_EnableRealTime: true
+[   0.667441] Config <Info> core\settings.cpp:LogSetting:80: Audio_OutputDevice: auto
+[   0.667442] Config <Info> core\settings.cpp:LogSetting:80: DataStorage_UseVirtualSd: true
+[   0.667444] Config <Info> core\settings.cpp:LogSetting:80: DataStorage_NandDir: C:\Users\troy0\AppData\Roaming/yuzu/nand/
+[   0.667445] Config <Info> core\settings.cpp:LogSetting:80: DataStorage_SdmcDir: C:\Users\troy0\AppData\Roaming/yuzu/sdmc/
+[   0.667446] Config <Info> core\settings.cpp:LogSetting:80: Debugging_UseGdbstub: false
+[   0.667446] Config <Info> core\settings.cpp:LogSetting:80: Debugging_GdbstubPort: 24689
+[   0.667447] Config <Info> core\settings.cpp:LogSetting:80: Debugging_ProgramArgs: 
+[   0.667448] Config <Info> core\settings.cpp:LogSetting:80: Services_BCATBackend: none
+[   0.667448] Config <Info> core\settings.cpp:LogSetting:80: Services_BCATBoxcatLocal: false
+[   0.766329] Loader <Info> core\file_sys\patch_manager.cpp:PatchRomFS:403:     RomFS: Update (v0.7.0) applied successfully
+[   0.782900] Loader <Warning> core\loader\loader.cpp:GetLoader:237: File Animal Crossing New Horizons [01006F8002326800][v1.2.0] [v393216].nsp has a different type than its extension.
+[   0.800206] Loader <Warning> core\loader\loader.cpp:GetLoader:237: File Super Smash Bros Ultimate Update 3.0.nsp has a different type than its extension.
+[   0.816757] Loader <Warning> core\loader\loader.cpp:GetLoader:237: File Super Smash Bros Ultimate [Challenger Pack 1] [01006A800016F002][v65536].nsp has a different type than its extension.
+[   0.827986] Loader <Warning> core\loader\loader.cpp:GetLoader:237: File Super Smash Bros Ultimate [Super Smash Bros Ultimate Piranha Plant Standalone Fighter] [01006A800016F001][v65536].nsp has a different type than its extension.
+[   0.918553] Loader <Info> core\file_sys\patch_manager.cpp:PatchRomFS:403:     RomFS: Update (v0.7.0) applied successfully
+[  11.595838] Frontend <Info> yuzu\main.cpp:BootGame:981: yuzu starting...
+[  11.644203] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontStandard' (0x0100000000000811).
+[  11.644541] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.644668] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontChineseSimple' (0x0100000000000814).
+[  11.645136] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.645202] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontChineseSimple' (0x0100000000000814).
+[  11.645437] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.645518] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontChineseTraditional' (0x0100000000000813).
+[  11.645682] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.645746] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontKorean' (0x0100000000000812).
+[  11.645865] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.645971] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontNintendoExtension' (0x0100000000000810).
+[  11.645995] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.646007] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'FontNintendoExtension' (0x0100000000000810).
+[  11.646023] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.646274] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'TimeZoneBinary' (0x010000000000080E).
+[  11.646304] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.646458] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:76: Synthesizing system archive 'TimeZoneBinary' (0x010000000000080E).
+[  11.646474] Service.FS <Info> core\file_sys\system_archive\system_archive.cpp:SynthesizeSystemArchive:91:     - System archive generation successful!
+[  11.697490] Render.Vulkan <Info> video_core\renderer_vulkan\vk_device.cpp:Create:261: Device doesn't support float16 natively
+[  11.697496] Render.Vulkan <Info> video_core\renderer_vulkan\vk_device.cpp:Create:282: Device doesn't support uint8 indexes
+[  11.709975] Render.Vulkan <Info> video_core\renderer_vulkan\renderer_vulkan.cpp:Report:418: Driver: AMD proprietary driver 2.0.127
+[  11.709981] Render.Vulkan <Info> video_core\renderer_vulkan\renderer_vulkan.cpp:Report:419: Device: Radeon RX 570 Series
+[  11.709982] Render.Vulkan <Info> video_core\renderer_vulkan\renderer_vulkan.cpp:Report:420: Vulkan: 1.2.131
