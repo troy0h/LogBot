@@ -4,6 +4,7 @@ import yaml
 import aiohttp
 import asyncio
 from urllib.request import Request, urlopen
+
 #logging
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -17,16 +18,20 @@ token = yaml.safe_load(open('token.yml'))
 
 
 played_games=[]
+
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
+    if message.author == client.user:
+        return
+
     try:
         n = len(message.attachments[0].filename)
         filenametest = message.attachments[0].filename[n-3:n]
-        
+        print(filenametest)
         if filenametest == "txt":
             played_games.clear()
             url = message.attachments[0].url
@@ -38,8 +43,10 @@ async def on_message(message):
                 if(output[61:74]=="yuzu Version:"):
                     end_index=str(output).find("| HEAD")
                     yuzu_version = output[74:end_index]
+                    print(yuzu_version)
                 elif(output[61:70]=="Host CPU:"):
                     cpu = output[70:]
+                    print(cpu)
                 elif(output[61:69]=="Host OS:"):
                     os = output[69:]
                 elif(output[94:101]=="Device:"):
@@ -76,6 +83,5 @@ async def on_message(message):
 
     except IndexError:
         pass
-
 
 client.run(token["token"])
