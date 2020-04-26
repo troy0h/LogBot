@@ -15,6 +15,7 @@ client = discord.Client()
 token = yaml.safe_load(open('token.yml'))
 
 
+
 played_games=[]
 @client.event
 async def on_ready():
