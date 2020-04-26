@@ -12,7 +12,7 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 client = discord.Client()
-token = yaml.safe_load(open(r'C:\Users\joshu\Documents\GitHub\LogBot\bot\token.yml'))
+token = yaml.safe_load(open('token.yml'))
 
 @client.event
 async def on_ready():
@@ -30,6 +30,7 @@ async def on_message(message):
             lines = urlopen(req)
             for line in lines:
                 output=line.decode('utf-8')
+                if(output)
                 
             
         else:
