@@ -33,11 +33,11 @@ async def on_message(message):
                 
                 if(output[61:74]=="yuzu Version:"):
                     end_index=str(output).find("| HEAD")
-                    yuzu_version = output[61:end_index]
+                    yuzu_version = output[74:end_index]
                 if(output[61:70]=="Host CPU:"):
-                    cpu = output[61:]
+                    cpu = output[70:]
                 if(output[61:69]=="Host OS:"):
-                    os = output[61:])
+                    os = output[69:])
         else:
             return
     except IndexError:
