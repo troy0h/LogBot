@@ -7,11 +7,11 @@ from urllib.request import Request, urlopen
 import os
 
 #logging
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+#logger = logging.getLogger('discord')
+#logger.setLevel(logging.DEBUG)
+#handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+#handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+#logger.addHandler(handler)
 
 client = discord.Client()
 token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\token.yml'))
@@ -42,6 +42,8 @@ async def on_message(message):
             aSync=None
             boxcat=None
             docked=None
+            gpu="Please start a game"
+            renderer="Please start a game"
             for line in lines:
                 line=line.replace(b'\r\n',b'')
                 output=line.decode('utf-8')
@@ -55,14 +57,16 @@ async def on_message(message):
                    
                 elif(output[61:69]=="Host OS:"):
                     os = output[69:]
+                
                 elif(output[94:101]=="Device:"):
-                    renderer="Vulkan"
-                    gpu=output[102:]
-                  
+                        renderer="Vulkan"
+                        gpu=output[102:]
+                
                 elif(output[106:118]=="GL_RENDERER:"):
-                    renderer="OpenGL"
-                    gpu=output[119:]
-               
+                        renderer="OpenGL"
+                        gpu=output[119:]
+            
+                    
                 elif(output[61:99]=="Renderer_UseAsynchronousGpuEmulation: "):
       
               
@@ -85,9 +89,12 @@ async def on_message(message):
                 elif(output[59:72]=="Booting game:"):
                     played_games.append(str(output[91:]).replace("\r\n",""))
             #rules
-            if (gpu[:6]=="Radeon"):
-                if (renderer=="OpenGL"):
-                    errors.append(strings_errors["opengl+amd"])
+            try:
+                if (gpu[:6]=="Radeon"):
+                    if (renderer=="OpenGL"):
+                        errors.append(strings_errors["opengl+amd"])
+            except:
+                print("Cant find error in log")
             if(aSync==False):
                 errors.append(strings_errors["async"])
             if(boxcat==True):
