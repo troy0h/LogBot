@@ -2,14 +2,16 @@ import os
 try:
     import discord
 except:
-    os.system("pip install discord.py")
-    import discord
+    os.system("py -m pip install discord.py")
+    os.system("py -m pip install PyYAML")
+    input("Please restart the program, press anything to quit")
 import logging
 try:
     import yaml
 except:
-    os.system("pip install PyYAML")
-    import yaml
+    os.system("py -m pip install discord.py")
+    os.system("py -m pip install PyYAML")
+    input("Please restart the program, press anything to quit")
 import aiohttp
 import asyncio
 from urllib.request import Request, urlopen
@@ -23,9 +25,9 @@ from urllib.request import Request, urlopen
 #logger.addHandler(handler)
 
 client = discord.Client()
-token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\token.yml'))
+token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\token.yml'))
 
-strings_errors=yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\error_messages.yml'))
+strings_errors=yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\error_messages.yml'))
 
 played_games=[]
 errors=[]
