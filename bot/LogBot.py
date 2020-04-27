@@ -90,6 +90,7 @@ async def on_message(message):
                         docked=False
                     else:
                         docked=True
+                
                 elif(output[61:83]=="Services_BCATBackend: "):
                     
                     if(output[83:]=="none"):
@@ -97,7 +98,7 @@ async def on_message(message):
                     else:
                         boxcat=True
                 elif(output[59:72]=="Booting game:"):
-                    played_games.append(str(output[91:]).replace("\r\n",""))
+                    played_games.append(str(output[92:]).replace("\r\n",""))
             #rules
             try:
                 if (gpu[:6]=="Radeon"):
@@ -105,6 +106,7 @@ async def on_message(message):
                         errors.append(strings_errors["opengl+amd"])
             except:
                 print("Cant find error in log")
+            
             if(aSync==False):
                 errors.append(strings_errors["async"])
             if(boxcat==True):
@@ -121,6 +123,12 @@ async def on_message(message):
                     isEA=True
             if isEA==False:
                 RealImageLocation="https://github.com/troy0h/LogBot/raw/master/bot/Logos/Yuzu.png"
+            if renderer=="Vulkan":
+                print("Found Vulkan!")
+                for i in played_games:
+                    
+                    if i=="Animal Crossing: New Horizons":
+                        errors.append(strings_errors["acnh+vulkan"])
             embed.set_thumbnail(url=RealImageLocation)
             embed.add_field(name="CPU", value=cpu, inline=False)
             embed.add_field(name="GPU", value=gpu, inline=False)
@@ -131,9 +139,9 @@ async def on_message(message):
                 embed.add_field(name="Last Played Game", value=played_games[len(played_games)-1], inline=False)
             for i in range(0,len(errors)):
                 if i==0:
-                    embed.add_field(name="Error: ", value=errors[i], inline=False)
+                    embed.add_field(name="Warning: ", value=errors[i], inline=False)
                 else:
-                    embed.add_field(name="Error: ", value=errors[i], inline=True)
+                    embed.add_field(name="Warning: ", value=errors[i], inline=True)
             await message.channel.send(embed=embed)
                     
 
