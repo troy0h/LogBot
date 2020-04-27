@@ -25,9 +25,9 @@ from urllib.request import Request, urlopen
 #logger.addHandler(handler)
 
 client = discord.Client()
-token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\token.yml'))
+token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\token.yml'))
 
-strings_errors=yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\error_messages.yml'))
+strings_errors=yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\error_messages.yml'))
 
 played_games=[]
 errors=[]
@@ -39,7 +39,15 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
+    if message.content.startswith('!restart_log_bot'):
+        await message.channel.send('Restarting, please wait')
+        import os
+        os.system("py "+os.path.dirname(os.path.abspath(__file__))+"\LogBot.py restart")
+        print("quitting")
+        quit()
+            
+            
+        return
     try:
         n = len(message.attachments[0].filename)
         filenametest = message.attachments[0].filename[n-3:n]
@@ -132,6 +140,7 @@ async def on_message(message):
                     if i=="Animal Crossing: New Horizons":
                         errors.append(strings_errors["acnh+vulkan"])
             embed.set_thumbnail(url=RealImageLocation)
+            
             embed.add_field(name="CPU", value=cpu, inline=False)
             embed.add_field(name="GPU", value=gpu, inline=False)
             embed.add_field(name="OS", value=os, inline=True)
