@@ -6,28 +6,23 @@ except:
     os.system("py -m pip install PyYAML")
     input("Please restart the program, press anything to quit")
 import logging
+
 try:
     import yaml
+
 except:
     os.system("py -m pip install discord.py")
     os.system("py -m pip install PyYAML")
     input("Please restart the program, press anything to quit")
+
 import aiohttp
 import asyncio
 from urllib.request import Request, urlopen
 
-
-#logging
-#logger = logging.getLogger('discord')
-#logger.setLevel(logging.DEBUG)
-#handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-#handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-#logger.addHandler(handler)
-
 client = discord.Client()
-token = yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\token.yml'))
+token = yaml.safe_load(open('token.yml'))
 
-strings_errors=yaml.safe_load(open(os.path.abspath(os.getcwd())+r'\bot\error_messages.yml'))
+strings_errors = yaml.safe_load(open('error_messages.yml'))
 
 played_games=[]
 errors=[]
@@ -88,27 +83,26 @@ async def on_message(message):
             
                     
                 elif(output[61:99]=="Renderer_UseAsynchronousGpuEmulation: "):
-      
-              
                     if(output[99:]=="false"):
                         aSync=False
                     else:
                         aSync=True
+                        
                 elif(output[61:83]=="System_UseDockedMode: "):
-                    
                     if(output[83:]=="false"):
                         docked=False
                     else:
                         docked=True
-                
+
                 elif(output[61:83]=="Services_BCATBackend: "):
-                    
                     if(output[83:]=="none"):
                         boxcat=False
                     else:
                         boxcat=True
+                        
                 elif(output[59:72]=="Booting game:"):
                     played_games.append(str(output[92:]).replace("\r\n",""))
+                    
             #rules
             try:
                 if (gpu[:6]=="Radeon"):
@@ -134,11 +128,10 @@ async def on_message(message):
             if isEA==False:
                 RealImageLocation="https://github.com/troy0h/LogBot/raw/master/bot/Logos/Yuzu.png"
             if renderer=="Vulkan":
-                print("Found Vulkan!")
                 for i in played_games:
-                    
                     if i=="Animal Crossing: New Horizons":
                         errors.append(strings_errors["acnh+vulkan"])
+
             embed.set_thumbnail(url=RealImageLocation)
             
             embed.add_field(name="CPU", value=cpu, inline=False)
@@ -150,9 +143,9 @@ async def on_message(message):
                 embed.add_field(name="Last Played Game", value=played_games[len(played_games)-1], inline=False)
             for i in range(0,len(errors)):
                 if i==0:
-                    embed.add_field(name="Warning: ", value=errors[i], inline=False)
+                    embed.add_field(name="Info: ", value=errors[i], inline=False)
                 else:
-                    embed.add_field(name="Warning: ", value=errors[i], inline=True)
+                    embed.add_field(name="Info: ", value=errors[i], inline=True)
             await message.channel.send(embed=embed)
                     
 

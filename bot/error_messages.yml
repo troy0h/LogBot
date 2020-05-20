@@ -2,4 +2,4 @@ opengl+amd: Amd and OpenGL is not recommended because of bad perfomance and grap
 async: It's recommend to use async for better perfomance
 boxcat: You have Boxcat enabled, which can cause errors in some games
 assertion: Error but ikd what gets replaced
-acnh+vulkan: Playing Animal Crossing New Horizons with vulkan is currently very unstable and can cause random crashes
+acnh+vulkan: Playing Animal Crossing New Horizons with vulkan is currently unstable, and it may cause random crashes
